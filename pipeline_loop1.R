@@ -37,6 +37,11 @@ while(i < length(read)){
 
     UMI1 <- umiExtract(align.stats = chop_data$adaptor1)
     UMI2 <- umiExtract(align.stats = chop_data$adaptor2)
+  
+    lev1 <- levExpect(align.stats = chop_data$adaptor1, x=10000)
+    lev2 <- levExpect(align.stats = chop_data$adaptor2, x=10000)
+
+    print(c(lev1, lev2))
 
     UMI_1 <- append(UMI_1, UMI1)
     UMI_2 <- append(UMI_2, UMI2)
