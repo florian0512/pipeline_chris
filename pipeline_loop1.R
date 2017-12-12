@@ -21,8 +21,8 @@ while(i < length(read)){
     
     chop_data <- chopReads(align_data, essential1 = TRUE, essential2 = TRUE, score1 = -25, score2 = -25)
     
-    UMI1 <- umiExtract(align.stats = chop_data$adaptor1)
-    UMI2 <- umiExtract(align.stats = chop_data$adaptor2)
+    UMI1 <- umiExtract(align.stats = chop_data$adaptor1, length = 12L)
+    UMI2 <- umiExtract(align.stats = chop_data$adaptor2, length = 12L)
     
     UMI_1 <- append(UMI_1, UMI1)
     UMI_2 <- append(UMI_2, UMI2)
@@ -35,18 +35,18 @@ while(i < length(read)){
 
     chop_data <- chopReads(align_data, essential1 = TRUE, essential2 = TRUE, score1 = -25, score2 = -25)
 
-    UMI1 <- umiExtract(align.stats = chop_data$adaptor1)
-    UMI2 <- umiExtract(align.stats = chop_data$adaptor2)
-  
-    lev1 <- levExpect(align.stats = chop_data$adaptor1, x=10000)
-    lev2 <- levExpect(align.stats = chop_data$adaptor2, x=10000)
-
-    print(c(lev1, lev2))
-
+    UMI1 <- umiExtract(align.stats = chop_data$adaptor1, length = 12L)
+    UMI2 <- umiExtract(align.stats = chop_data$adaptor2, length = 12L)
+    
     UMI_1 <- append(UMI_1, UMI1)
     UMI_2 <- append(UMI_2, UMI2)
     chop_reads <- append(chop_reads, chop_data$reads)
     chop_qual <- append(chop_qual, chop_data$quality)
+
+    lev1 <- levExpect(align.stats = chop_data$adaptor1, x=10000)
+    lev2 <- levExpect(align.stats = chop_data$adaptor2, x=10000)
+
+    print(c(lev1, lev2))
 
 saveRDS(chop_reads, "chopreads.rds")
 saveRDS(UMI_1, "UMI1.rds")
