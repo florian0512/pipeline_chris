@@ -7,6 +7,8 @@ es_reads <- readFastq("//nfs/research2/marioni/florian/ONT_mouse/mouse_es_cell.f
 
 read <- sread(es_reads)
 
+names(read) <- paste0("READ", seq_along(read))
+
 UMI_1 <- NULL
 UMI_2 <- NULL
 chop_reads <- NULL
